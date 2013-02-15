@@ -1,1 +1,10 @@
-{"run_list":[]}
+{
+  "mysql": {
+    "server_root_password": "thisisalongpasswordforlessonsforlifeproject",
+    "server_repl_password": "thisisalongpasswordforlessonsforlifeproject",
+    "server_debian_password": "thisisalongpasswordforlessonsforlifeproject"
+  },
+  "run_list":[
+    "recipe[build-essential::default]"
+  , "recipe[wordpress::default]"
+]}
