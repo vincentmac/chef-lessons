@@ -28,7 +28,8 @@ template "nginx.conf" do
 end
 
 template "#{node['nginx']['dir']}/sites-available/default" do
-  source "default-site.erb"
+  # source "default-site.erb"
+  source "lessonsforlife-site.erb"
   owner "root"
   group "root"
   mode 00644

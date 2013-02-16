@@ -1,0 +1,54 @@
+upstream lessons_node {
+  server 127.0.0.1:3000;
+}
+
+upstream api_lessons_node {
+  server 127.0.0.1:4000;
+}
+
+# 301 redirect www to apex
+server {
+  listen 80;
+  server_name www.lessonsforlifeproject.com;
+  return 301 http://lessonsforlifeproject.com$request_uri;
+}
+
+# Main Site Configuration
+server {
+  listen 80;
+  server_name <%= node['nginx']['lessonsforlife']['site'] %>;
+
+  access_log <%= node['nginx']['log_dir'] %>/lessonsforlifeproject.com.log;
+
+  location / {
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded_for $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_set_header X-NginX-Proxy true;
+    proxy_pass_header Server;
+    #server_tokens off;
+
+    proxy_pass http://lessons_node/;
+    proxy_redirect off;
+  }
+}
+
+# API Configuration
+server {
+  listen 80;
+  server_name <%= node['nginx']['lessonsforlife']['api'] %>;
+
+  access_log <%= node['nginx']['log_dir'] %>/api.lessonsforlifeproject.com.log;
+
+  location / {
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded_for $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_set_header X-NginX-Proxy true;
+    proxy_pass_header Server;
+    #server_tokens off;
+
+    proxy_pass http://api_lessons_node/;
+    proxy_redirect off;
+  }
+}

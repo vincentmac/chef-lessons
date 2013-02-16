@@ -1,10 +1,21 @@
 {
+  "apache": {
+    "listen_ports": ["4000"],
+    "contact": "vincent@avant.io"
+  },
   "mysql": {
     "server_root_password": "thisisalongpasswordforlessonsforlifeproject",
     "server_repl_password": "thisisalongpasswordforlessonsforlifeproject",
     "server_debian_password": "thisisalongpasswordforlessonsforlifeproject"
   },
+  "nginx": {
+    "lessonsforlife": {
+      "site": "ec2.lessonsforlifeproject.com",
+      "api": "api2.lessonsforlifeproject.com"
+    }
+  },
   "run_list":[
     "recipe[build-essential::default]"
   , "recipe[wordpress::default]"
+  , "recipe[nginx::default]"
 ]}
