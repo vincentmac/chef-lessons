@@ -14,8 +14,15 @@
       "api": "api2.lessonsforlifeproject.com"
     }
   },
+  "nodejs": {
+    "install_method": "package",
+    "version": "0.8.19",
+    "npm": "1.2.9"
+    },
   "run_list":[
     "recipe[build-essential::default]"
   , "recipe[wordpress::default]"
   , "recipe[nginx::default]"
+  , "recipe[nodejs::default]"
+  , "recipe[nodejs::npm]"
 ]}
