@@ -20,7 +20,8 @@
     "npm": "1.2.9"
     },
   "run_list":[
-    "recipe[build-essential::default]"
+    "recipe[aws::default]"
+  , "recipe[build-essential::default]"
   , "recipe[wordpress::default]"
   , "recipe[nginx::default]"
   , "recipe[nodejs::default]"
