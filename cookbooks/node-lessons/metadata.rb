@@ -1,7 +1,8 @@
 name             'node-lessons'
-maintainer       'YOUR_COMPANY_NAME'
-maintainer_email 'YOUR_EMAIL'
+maintainer       'Avant.io'
+maintainer_email 'vincent@avant.io'
 license          'All rights reserved'
 description      'Installs/Configures node-lessons'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.1.0'
+depends "nodejs"

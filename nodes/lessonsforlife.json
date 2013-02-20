@@ -25,4 +25,5 @@
   , "recipe[nginx::default]"
   , "recipe[nodejs::default]"
   , "recipe[nodejs::npm]"
+  , "recipe[node-lessons::default]"
 ]}
