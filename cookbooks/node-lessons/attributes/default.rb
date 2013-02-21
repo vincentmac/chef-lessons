@@ -28,6 +28,13 @@ default['node-lessons']['service_name'] = "lessonsforlife"
 default['node-lessons']['use_upstart']  = node['platform'] == "ubuntu" && node['platform_version'].to_f >= 10.04
 
 default['node-lessons']['node_bin'] = "/usr/bin/node"
+default['node-lessons']['app_dir']  = "/var/www/lessonsforlifeproject.com"
 default['node-lessons']['app_bin']  = "/var/www/lessonsforlifeproject.com/app.js"
 default['node-lessons']['log_dir']  = "/var/log/lessonsforlifeproject.com"
-default['node-lessons']['user']     = "www-data"
+default['node-lessons']['log_path']  = "/var/log/lessonsforlifeproject.com/lessons.log"
+default['node-lessons']['www_user'] = "www-data"
+
+default['node-lessons']['repos_dir']  = "/home/ubuntu/repos"
+default['node-lessons']['remote_repo']  = "/home/ubuntu/repos/lessonsforlifeproject.com"
+default['node-lessons']['remote_hooks'] = "/home/ubuntu/repos/lessonsforlifeproject.com/hooks"
+default['node-lessons']['repo_user']    = "ubuntu"

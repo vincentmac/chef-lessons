@@ -8,10 +8,13 @@
 #
 # http://stackoverflow.com/questions/11084279/node-js-setup-for-easy-deployment-and-updating/11157223#11157223
 
+include_recipe "node-lessons::setup_repo"
+include_recipe "node-lessons::setup_webapp"
+
 # install forever
-execute "npm install -g forever" do
-  command "sudo npm install -g forever"
-end
+# execute "npm install -g forever" do
+#   command "sudo npm install -g forever"
+# end
 
 
 service "lessonsforlife" do
@@ -30,10 +33,10 @@ template "/etc/init/lessonsforlife.conf" do
   group "root"
   mode 00644
   variables(
-    :user => node['node-lessons']['user'],
+    :user => node['node-lessons']['www_user'],
     :node_bin => node['node-lessons']['node_bin'],
     :app => node['node-lessons']['app_bin'],
-    :log => node['node-lessons']['log_dir']
+    :log => node['node-lessons']['log_path']
   )
   notifies :restart, 'service[lessonsforlife]'
 end

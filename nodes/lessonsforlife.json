@@ -3,7 +3,16 @@
     "listen_ports": ["4000"],
     "contact": "vincent@avant.io"
   },
+  "aws-mount-ebs": {
+    "mysql_volume_id": "vol-5eff807f",
+    "mysql_device": "/dev/xvdf",
+    "mysql_volume": "/vol1",
+    "mongodb-volume_id": ""
+  },
   "mysql": {
+    "ec2_path": "/vol1/mysql",
+    "ebs_vol_device": "/dev/xvdf",
+    "ebs_vol_size": "2",
     "server_root_password": "thisisalongpasswordforlessonsforlifeproject",
     "server_repl_password": "thisisalongpasswordforlessonsforlifeproject",
     "server_debian_password": "thisisalongpasswordforlessonsforlifeproject"
@@ -20,11 +29,11 @@
     "npm": "1.2.9"
     },
   "run_list":[
-    "recipe[aws::default]"
-  , "recipe[build-essential::default]"
+    // "recipe[aws-mount-ebs::default]"
+    "recipe[build-essential::default]"
   , "recipe[wordpress::default]"
   , "recipe[nginx::default]"
-  , "recipe[nodejs::default]"
-  , "recipe[nodejs::npm]"
+  // , "recipe[nodejs::default]"
+  // , "recipe[nodejs::npm]"
   , "recipe[node-lessons::default]"
 ]}

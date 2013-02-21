@@ -9,29 +9,33 @@
 # initctl reload lessonsforlife
 # initctl start lessonsforlife
 
+# modified from http://clock.co.uk/tech-blogs/upstart-and-nodejs
+
 description "node.js server"
 author      "Vincent Mac <vincent@avant.io>"
 version     "1.0.1"
 
-expect fork
 
-start on started mountall
+start on (local-filesystems and net-device-up)
 stop on shutdown
+
+instance "Node - lessonsforlife"
 
 # Automatically Respawn
 respawn
-respawn limit 99 5
+respawn limit 5 60
 
 # Increase max open files (ulimit) from default @ 1024
 limit nofile 32768 32768
 
-env HOME=/root
+# env HOME=/root
 
 script
   #set -e
 
-  export HOME=$HOME
+  # export HOME=$HOME
 
   # exec sudo -u www-data /usr/bin/node /var/www/lessonsforlifeproject.com/app.js 2>&1 >> /var/log/lessonsforlifeproject.com
-  exec sudo -u <%= @user %> <%= @node_bin %> <%= @app %> 2>&1 >> <%= @log %>
+  # exec sudo -u <%= @user %> NODE_ENV=production <%= @node_bin %> <%= @app %> 2>&1 >> <%= @log %>
+  exec sudo -u <%= @user %> NODE_ENV=production <%= @node_bin %> <%= @app %> >> <%= @log %> 2>&1
 end script
