@@ -7,8 +7,11 @@
 # All rights reserved - Do Not Redistribute
 #
 # http://stackoverflow.com/questions/11084279/node-js-setup-for-easy-deployment-and-updating/11157223#11157223
+# http://kvz.io/blog/2009/12/15/run-nodejs-as-a-service-on-ubuntu-karmic/
+# http://clock.co.uk/tech-blogs/upstart-and-nodejs
 
-include_recipe "node-lessons::setup_repo"
+include_recipe "node-lessons::setup_repo_node"
+include_recipe "node-lessons::setup_repo_api"
 include_recipe "node-lessons::setup_webapp"
 
 # install forever
@@ -16,13 +19,12 @@ include_recipe "node-lessons::setup_webapp"
 #   command "sudo npm install -g forever"
 # end
 
-
 service "lessonsforlife" do
   service_name node['node-lessons']['service_name']
   if node['node-lessons']['use_upstart']
     provider Chef::Provider::Service::Upstart
   end
-  supports :status => true, :restart => true, :reload => true
+  supports :start => true, :status => true, :restart => true, :reload => true
   action :enable
 end
 
@@ -38,9 +40,11 @@ template "/etc/init/lessonsforlife.conf" do
     :app => node['node-lessons']['app_bin'],
     :log => node['node-lessons']['log_path']
   )
-  notifies :restart, 'service[lessonsforlife]'
+  # notifies :restart, 'service[lessonsforlife]'
+  notifies :restart, resources(:service => "lessonsforlife")
 end
 
 service "lessonsforlife" do
+  # action [:enable, :start]
   action :start
 end

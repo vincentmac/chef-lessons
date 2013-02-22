@@ -27,13 +27,18 @@
     "install_method": "package",
     "version": "0.8.19",
     "npm": "1.2.9"
+  },
+  "node-lessons": {
+    "service-name": "lessonsforlife"
     },
   "run_list":[
     // "recipe[aws-mount-ebs::default]"
     "recipe[build-essential::default]"
-  , "recipe[wordpress::default]"
+  , "recipe[git::default]"
+  // , "recipe[wordpress::default]"
   , "recipe[nginx::default]"
   // , "recipe[nodejs::default]"
   // , "recipe[nodejs::npm]"
-  , "recipe[node-lessons::default]"
+  , "recipe[node-lessons::setup_repos]"
+  // , "recipe[node-lessons::default]"
 ]}

@@ -38,3 +38,8 @@ default['node-lessons']['repos_dir']  = "/home/ubuntu/repos"
 default['node-lessons']['remote_repo']  = "/home/ubuntu/repos/lessonsforlifeproject.com"
 default['node-lessons']['remote_hooks'] = "/home/ubuntu/repos/lessonsforlifeproject.com/hooks"
 default['node-lessons']['repo_user']    = "ubuntu"
+
+# Wordpress API Repo
+default['node-lessons']['remote_repo_api']  = "/home/ubuntu/repos/api.lessonsforlifeproject.com"
+default['node-lessons']['remote_hooks_api'] = "/home/ubuntu/repos/api.lessonsforlifeproject.com/hooks"
+default['node-lessons']['app_dir_api']      = "/var/www/wordpress"

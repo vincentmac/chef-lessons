@@ -29,5 +29,6 @@ cookbook_file node['node-lessons']['app_bin'] do
   source "app.js"
   owner node['node-lessons']['repo_user']
   group node['node-lessons']['www_user']
+  mode 00755
   not_if do FileTest.file?(node['node-lessons']['app_bin']) end
 end
