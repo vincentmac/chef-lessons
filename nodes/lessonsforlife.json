@@ -7,7 +7,17 @@
     "mysql_volume_id": "vol-5eff807f",
     "mysql_device": "/dev/xvdf",
     "mysql_volume": "/vol1",
-    "mongodb-volume_id": ""
+    "mongodb-volume_id": "vol-116f1430",
+    "mongodb_device": "/dev/xvdg",
+    "mongodb_volume": "/vol2",
+    "mongodb_libdir": "/vol2/lib",
+    "mongodb_logdir": "/vol2/log",
+    "mongodb_dbpath": "/vol2/lib/mongodb",
+    "mongodb_logpath": "/vol2/log/mongodb"
+  },
+  "mongodb": {
+    // "dbpath": "/vol2/mongo/lib/mongodb",
+    // "logpath": "/vol2/mongo/log/mongodb"
   },
   "mysql": {
     "ec2_path": "/vol1/mysql",
@@ -19,7 +29,7 @@
   },
   "nginx": {
     "lessonsforlife": {
-      "site": "ec2.lessonsforlifeproject.com",
+      "site": "lessonsforlifeproject.com",
       "api": "api2.lessonsforlifeproject.com"
     }
   },
@@ -29,16 +39,24 @@
     "npm": "1.2.9"
   },
   "node-lessons": {
-    "service-name": "lessonsforlife"
-    },
-  "run_list":[
-    // "recipe[aws-mount-ebs::default]"
-    "recipe[build-essential::default]"
+    "service-name": "lessonsforlife",
+    "wordpress_dir": "/var/www/api.lessonsforlifeproject.com"
+  },
+  "wordpress": {
+    "dir": "/var/www/api.lessonsforlifeproject.com/app",
+    "www_user": "www-data"
+  },
+  "run_list": [
+    // "recipe[node-lessons::setup_repo_api]"
+    "recipe[aws-mount-ebs::default]"
+  , "recipe[build-essential::default]"
   , "recipe[git::default]"
-  // , "recipe[wordpress::default]"
+  , "recipe[wordpress::default]"
+  , "recipe[mongodb::10gen_repo]"
+  , "recipe[aws-mount-ebs::mongodb_ec2]"
   , "recipe[nginx::default]"
   // , "recipe[nodejs::default]"
   // , "recipe[nodejs::npm]"
-  , "recipe[node-lessons::setup_repos]"
+  // , "recipe[node-lessons::setup_repos]"
   // , "recipe[node-lessons::default]"
 ]}

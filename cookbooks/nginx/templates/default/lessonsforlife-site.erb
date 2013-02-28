@@ -52,3 +52,33 @@ server {
     proxy_redirect off;
   }
 }
+
+# 301 redirect wsdm.us url shortener
+server {
+  listen 80;
+  server_name www.wsdm.us;
+  return 301 http://lessonsforlifeproject.com/s$request_uri;
+}
+
+server {
+  listen 80;
+  server_name wsdm.us;
+  return 301 http://lessonsforlifeproject.com/s$request_uri;
+}
+
+
+# AWS Login Routing
+server {
+  listen 80;
+  server_name aws.wsdm.us;
+  return 301 https://lessonsforlifeproject.signin.aws.amazon.com/console;
+  access_log /var/log/nginx/aws.wsdm.us.log;
+}
+
+# AWS Login Routing
+server {
+  listen 80;
+  server_name aws.lessonsforlifeproject.com;
+  return 301 https://lessonsforlifeproject.signin.aws.amazon.com/console;
+  access_log /var/log/nginx/aws.lessonsforlifeproject.com.log;
+}

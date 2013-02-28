@@ -50,3 +50,13 @@ template node['node-lessons']['remote_hooks_api'] do
   )
   # notifies :restart, 'service[lessonsforlife]'
 end
+
+# Control Wordpress Directory Owner Rights
+directory node['node-lessons']['wordpress_dir'] do
+  owner node['node-lessons']['www_user']
+  group node['node-lessons']['www_user']
+  recursive true
+end
+
+
+

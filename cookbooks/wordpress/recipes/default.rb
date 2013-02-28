@@ -65,8 +65,8 @@ else
 end
 
 directory "#{node['wordpress']['dir']}" do
-  owner "root"
-  group "root"
+  owner node['wordpress']['www_user']
+  group node['wordpress']['www_user']
   mode "0755"
   action :create
   recursive true
@@ -125,8 +125,8 @@ end
 
 template "#{node['wordpress']['dir']}/wp-config.php" do
   source "wp-config.php.erb"
-  owner "root"
-  group "root"
+  owner node['wordpress']['www_user']
+  group node['wordpress']['www_user']
   mode "0644"
   variables(
     :database        => node['wordpress']['db']['database'],

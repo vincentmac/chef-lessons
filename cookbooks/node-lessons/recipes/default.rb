@@ -20,11 +20,17 @@ include_recipe "node-lessons::setup_webapp"
 # end
 
 service "lessonsforlife" do
+  # action [:enable, :start]
+  action :stop
+  not_if do FileTest.file?("/etc/init/lessonsforlife.conf") end
+end
+
+service "lessonsforlife" do
   service_name node['node-lessons']['service_name']
   if node['node-lessons']['use_upstart']
     provider Chef::Provider::Service::Upstart
   end
-  supports :start => true, :status => true, :restart => true, :reload => true
+  supports :start => true, :stop => true, :status => true, :restart => true, :reload => true
   action :enable
 end
 
