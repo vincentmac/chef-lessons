@@ -22,6 +22,7 @@ include_recipe "mysql::server"
 include_recipe "mysql::server_ec2"
 include_recipe "php"
 include_recipe "php::module_mysql"
+include_recipe "php::module_curl"
 include_recipe "apache2::mod_php5"
 
 # Make sure the mysql gem is installed. This looks like it will change with 

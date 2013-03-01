@@ -51,7 +51,7 @@
     "recipe[aws-mount-ebs::default]"
   , "recipe[build-essential::default]"
   , "recipe[git::default]"
-  // , "recipe[wordpress::default]"
+  , "recipe[wordpress::default]"
   // , "recipe[mongodb::10gen_repo]"
   // , "recipe[aws-mount-ebs::mongodb_ec2]"
   , "recipe[nginx::default]"

@@ -1,4 +1,11 @@
-# ubuntu.rb
+#
+# Cookbook Name:: oh-my-zsh
+# Recipe:: ubuntu
+#
+# Copyright 2013, Avant.io
+#
+# All rights reserved - Do Not Redistribute
+#
 include_recipe "git"
 include_recipe "zsh"
 
