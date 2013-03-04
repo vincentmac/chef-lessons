@@ -13,5 +13,6 @@ while read oldrev newrev ref
 do
   branch=`echo $ref | cut -d/ -f3`
   echo current branch: $branch
-  git --work-tree=$GIT_WORK_TREE checkout -f $branch
+  sudo git --work-tree=$GIT_WORK_TREE checkout -f $branch
+  sudo chown -R <%= @www_user %>:<%= @www_user %> <%= @app_dir %>
 done

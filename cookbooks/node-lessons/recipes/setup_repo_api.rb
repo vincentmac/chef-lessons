@@ -46,7 +46,8 @@ template node['node-lessons']['remote_hooks_api'] do
   group node['node-lessons']['repo_user']
   mode 00774
   variables(
-    :app_dir => node['node-lessons']['app_dir_api']
+    :app_dir => node['node-lessons']['app_dir_api'],
+    :www_user => node['node-lessons']['www_user']
   )
   # notifies :restart, 'service[lessonsforlife]'
 end
