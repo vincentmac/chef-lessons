@@ -46,11 +46,16 @@ if (node.attribute?('ec2') && ! FileTest.directory?(node['aws-mount-ebs']['mysql
 
 end
 
+template "/etc/apparmor.d/usr.sbin.mysqld" do
+  source "usr.sbin.mysqld.erb"
+  owner "root"
+  group "root"
+  mode 00644
+end
+
 template "/etc/apparmor.d/local/usr.sbin.mysqld" do
-  # source "default-site.erb"
   source "local.usr.sbin.mysqld.erb"
   owner "root"
   group "root"
   mode 00644
-  # notifies :reload, 'service[nginx]'
 end
